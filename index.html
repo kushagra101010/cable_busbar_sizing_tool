@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cable & Busbar Sizing Tool (IS Standards)</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Cable & Busbar Sizing Tool</h1>
+
+  <div id="upload-top" style="margin-bottom: 18px;">
+    <label for="upload-config-top" style="font-weight: bold;">Load Configuration & Calculate:</label>
+    <input type="file" id="upload-config-top" accept=".json" />
+  </div>
+
+  <div id="input-form">
+    <h2>Configuration</h2>
+
+    <label for="type">Type:</label>
+    <select id="type">
+      <option value="cable">Cable</option>
+      <option value="busbar">Busbar</option>
+    </select>
+
+    <label for="system-type">System Type:</label>
+    <select id="system-type">
+      <option value="ac">AC</option>
+      <option value="dc">DC</option>
+    </select>
+
+    <label for="phase-config">Phase Configuration (AC only):</label>
+    <select id="phase-config">
+      <option value="3phase-star">3-phase Star</option>
+      <option value="3phase-delta">3-phase Delta</option>
+      <option value="1phase">1-phase</option>
+    </select>
+
+    <label for="voltage">Voltage (V):</label>
+    <input type="number" id="voltage" value="415" />
+
+    <div class="input-type-selection">
+      <label>Input Type:</label>
+      <div class="radio-group">
+        <input type="radio" id="input-current" name="input-type" value="current" checked>
+        <label for="input-current">Current</label>
+        <input type="radio" id="input-power" name="input-type" value="power">
+        <label for="input-power">Power</label>
+      </div>
+    </div>
+
+    <div id="current-input">
+      <label for="load-current">Load Current (A):</label>
+      <input type="number" id="load-current" />
+    </div>
+
+    <div id="power-input" style="display: none;">
+      <label for="load-power">Load Power (kVA/kW):</label>
+      <input type="number" id="load-power" />
+    </div>
+
+    <label for="conductor-material">Conductor Material:</label>
+    <select id="conductor-material">
+      <option value="copper">Copper</option>
+      <option value="aluminium">Aluminium</option>
+      <option value="both">Both</option>
+    </select>
+
+    <div id="cable-fields">
+      <label for="insulation-type">Insulation Type (cables only):</label>
+      <select id="insulation-type">
+        <option value="xlpe">XLPE</option>
+        <option value="pvc">PVC</option>
+        <option value="both">Both</option>
+      </select>
+
+      <label for="num-cores">Number of Cores:</label>
+      <select id="num-cores">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="3.5">3.5</option>
+        <option value="4">4</option>
+      </select>
+    </div>
+
+    <div id="busbar-fields" style="display:none;">
+      <label for="busbar-insulation-type">Busbar Insulation Type:</label>
+      <select id="busbar-insulation-type">
+        <option value="non-insulated">Non-insulated</option>
+        <option value="heat-shrink">Insulated with heat shrink</option>
+        <option value="epoxy">Epoxy coated</option>
+      </select>
+      <label for="num-45-bends">Number of 45° Bends:</label>
+      <input type="number" id="num-45-bends" value="0" />
+      <label for="num-90-bends">Number of 90° Bends:</label>
+      <input type="number" id="num-90-bends" value="0" />
+    </div>
+
+    <label id="length-label" for="length">Length (m):</label>
+    <input type="number" id="length" />
+
+    <label for="short-circuit-current">Short Circuit Current (kA):</label>
+    <input type="number" id="short-circuit-current" />
+
+    <label for="short-circuit-duration">Short Circuit Duration (s):</label>
+    <input type="number" id="short-circuit-duration" value="1" />
+
+    <label for="installation-method">Installation Method:</label>
+    <select id="installation-method">
+      <option value="open-air">Open Air</option>
+      <option value="buried">Buried</option>
+      <option value="grouped">Grouped</option>
+    </select>
+
+    <label for="ambient-temp">Ambient Temperature (°C):</label>
+    <input type="number" id="ambient-temp" value="40" />
+
+    <label for="power-factor">Power Factor (AC):</label>
+    <input type="number" step="0.01" id="power-factor" value="0.9" />
+
+    <div class="cable-size-selection">
+      <div class="checkbox-group">
+        <input type="checkbox" id="enable-size-filter" />
+        <label for="enable-size-filter">Filter by Cable Size</label>
+      </div>
+      <select id="cable-sizes" multiple disabled>
+        <option value="1.5">1.5 mm²</option>
+        <option value="2.5">2.5 mm²</option>
+        <option value="4">4 mm²</option>
+        <option value="6">6 mm²</option>
+        <option value="10">10 mm²</option>
+        <option value="16">16 mm²</option>
+        <option value="25">25 mm²</option>
+        <option value="35">35 mm²</option>
+        <option value="50">50 mm²</option>
+        <option value="70">70 mm²</option>
+        <option value="95">95 mm²</option>
+        <option value="120">120 mm²</option>
+        <option value="150">150 mm²</option>
+        <option value="185">185 mm²</option>
+        <option value="240">240 mm²</option>
+        <option value="300">300 mm²</option>
+        <option value="400">400 mm²</option>
+        <option value="500">500 mm²</option>
+        <option value="600">600 mm²</option>
+        <option value="630">630 mm²</option>
+      </select>
+    </div>
+
+    <button id="calculate">Calculate</button>
+  </div>
+
+  <h2>Results</h2>
+  <div id="results"></div>
+
+  <div id="download-upload">
+    <button id="download-csv">Download CSV</button>
+    <button id="download-config">Download Configuration</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+{
+  "cable_sizing": {
+    "PVC": {
+      "Copper": [
+        { "size_mm2": 1.5, "current_air": 18, "current_buried": 22 },
+        { "size_mm2": 2.5, "current_air": 24, "current_buried": 29 },
+        { "size_mm2": 4, "current_air": 32, "current_buried": 37 },
+        { "size_mm2": 6, "current_air": 41, "current_buried": 48 },
+        { "size_mm2": 10, "current_air": 57, "current_buried": 67 },
+        { "size_mm2": 16, "current_air": 76, "current_buried": 88 },
+        { "size_mm2": 25, "current_air": 101, "current_buried": 117 },
+        { "size_mm2": 35, "current_air": 125, "current_buried": 145 },
+        { "size_mm2": 50, "current_air": 150, "current_buried": 175 },
+        { "size_mm2": 70, "current_air": 185, "current_buried": 215 },
+        { "size_mm2": 95, "current_air": 225, "current_buried": 260 },
+        { "size_mm2": 120, "current_air": 260, "current_buried": 305 },
+        { "size_mm2": 150, "current_air": 300, "current_buried": 355 },
+        { "size_mm2": 185, "current_air": 340, "current_buried": 400 },
+        { "size_mm2": 240, "current_air": 395, "current_buried": 460 },
+        { "size_mm2": 300, "current_air": 455, "current_buried": 525 },
+        { "size_mm2": 400, "current_air": 520, "current_buried": 600 },
+        { "size_mm2": 500, "current_air": 590, "current_buried": 680 },
+        { "size_mm2": 600, "current_air": 655, "current_buried": 760 }
+      ]
+    },
+    "XLPE": {
+      "Copper": [
+        { "size_mm2": 1.5, "current_air": 20, "current_buried": 24 },
+        { "size_mm2": 2.5, "current_air": 28, "current_buried": 32 },
+        { "size_mm2": 4, "current_air": 37, "current_buried": 42 },
+        { "size_mm2": 6, "current_air": 47, "current_buried": 52 },
+        { "size_mm2": 10, "current_air": 65, "current_buried": 73 },
+        { "size_mm2": 16, "current_air": 85, "current_buried": 95 },
+        { "size_mm2": 25, "current_air": 115, "current_buried": 130 },
+        { "size_mm2": 35, "current_air": 140, "current_buried": 160 },
+        { "size_mm2": 50, "current_air": 170, "current_buried": 195 },
+        { "size_mm2": 70, "current_air": 215, "current_buried": 240 },
+        { "size_mm2": 95, "current_air": 260, "current_buried": 290 },
+        { "size_mm2": 120, "current_air": 300, "current_buried": 340 },
+        { "size_mm2": 150, "current_air": 340, "current_buried": 385 },
+        { "size_mm2": 185, "current_air": 385, "current_buried": 435 },
+        { "size_mm2": 240, "current_air": 445, "current_buried": 505 },
+        { "size_mm2": 300, "current_air": 505, "current_buried": 575 },
+        { "size_mm2": 400, "current_air": 570, "current_buried": 650 },
+        { "size_mm2": 500, "current_air": 635, "current_buried": 725 },
+        { "size_mm2": 600, "current_air": 700, "current_buried": 800 }
+      ]
+    }
+  },
+  "core_derating": {
+    "1_core": 1.0,
+    "2_core": 0.9,
+    "3_core": 0.85,
+    "3.5_core": 0.82,
+    "4_core": 0.8
+  },
+  "derating_factors": {
+    "ambient": {
+      "40C": 0.91,
+      "50C": 0.87,
+      "60C": 0.82
+    },
+    "grouping": {
+      "2_cables": 0.8,
+      "3_cables": 0.7
+    }
+  },
+  "busbar_sizing": {
+    "Copper": {
+      "current_density_A_per_mm2": 1.2,
+      "density_kg_per_m3": 8960
+    },
+    "Aluminium": {
+      "current_density_A_per_mm2": 0.8,
+      "density_kg_per_m3": 2700
+    }
+  },
+  "voltage_drop_limit_percent": 5
+}
