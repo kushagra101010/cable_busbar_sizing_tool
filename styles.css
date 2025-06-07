@@ -68,12 +68,6 @@ button:hover {
   background: #f0f0f0;
 }
 
-canvas {
-  background: #fff;
-  border: 1px solid #ccc;
-  margin-top: 15px;
-  padding: 10px;
-}
 
 .error-message {
   color: #dc3545;
@@ -132,10 +126,6 @@ canvas {
     overflow-x: auto;
   }
 
-  canvas {
-    width: 100%;
-    height: auto;
-  }
 
   button {
     width: 100%;
